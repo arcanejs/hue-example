@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@arcanejs/react-toolkit':
-        specifier: ^0.4.1
-        version: 0.4.1(zod@3.23.8)
+        specifier: ^0.5.0
+        version: 0.5.0(zod@3.23.8)
       '@arcanejs/toolkit':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.4.0
+        version: 0.4.0
       '@types/lodash':
         specifier: ^4.17.13
         version: 4.17.13
@@ -54,16 +54,16 @@ packages:
   '@arcanejs/protocol@0.2.0':
     resolution: {integrity: sha512-rAHoLqqVEKjmSP/P7uwxg5Ef9PtRIi+GRKAuSW93whuarCm1xPqSm1hq9ZxNFoTqHW6beruvhbFGpzprXsF1qw==}
 
-  '@arcanejs/react-toolkit@0.4.1':
-    resolution: {integrity: sha512-Lms1UFgo2dWYI/Z/h7BLlmb7PZJ3XV76O4UqOasgt/0EbBkxDnItm0TjtwlM6/RNDYwX4UqnBssHKD4IGU8dQQ==}
+  '@arcanejs/react-toolkit@0.5.0':
+    resolution: {integrity: sha512-e1tfKHxzRdPcy6XrN8V/c4BUxW+OmSUjJdiHE7/nvC/70jniMe6EZ1W96BFFhCI8cj95lxJKuluo0+wOJuWuaQ==}
     peerDependencies:
       zod: ^3.23.8
     peerDependenciesMeta:
       zod:
         optional: true
 
-  '@arcanejs/toolkit@0.3.0':
-    resolution: {integrity: sha512-poIChT8/HgRasWI4S1hv89mX9ybPKArx1A227HVNGoDYNZXCkjKXZ954/EvUfnKrCY08p3/vc3BMFaY5jkTfMA==}
+  '@arcanejs/toolkit@0.4.0':
+    resolution: {integrity: sha512-JZIeBaznCHd26mCqURKc0bYxgInwPZwUIwP339nWaR6G8W2kxjxLftZHJY+OlABDEwRtvusaQai1FUENqpcp0A==}
 
   '@esbuild/aix-ppc64@0.23.1':
     resolution: {integrity: sha512-6VhYk1diRqrhBAqpJEdjASR/+WVRtfjpqKuNw11cLiaWpAT/Uu+nokB+UJnevzy/P9C/ty6AOe0dwueMrGh/iQ==}
@@ -587,10 +587,10 @@ snapshots:
 
   '@arcanejs/protocol@0.2.0': {}
 
-  '@arcanejs/react-toolkit@0.4.1(zod@3.23.8)':
+  '@arcanejs/react-toolkit@0.5.0(zod@3.23.8)':
     dependencies:
       '@arcanejs/protocol': 0.2.0
-      '@arcanejs/toolkit': 0.3.0
+      '@arcanejs/toolkit': 0.4.0
       lodash: 4.17.21
       react: 18.3.1
       react-reconciler: 0.28.0(react@18.3.1)
@@ -601,7 +601,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@arcanejs/toolkit@0.3.0':
+  '@arcanejs/toolkit@0.4.0':
     dependencies:
       '@arcanejs/diff': 0.4.0
       '@arcanejs/protocol': 0.2.0

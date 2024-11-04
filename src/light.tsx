@@ -1,11 +1,6 @@
-import { FC, useEffect, useMemo, useState } from 'react';
-import { Api, TypedLight, TypedRoom } from './hue-types';
-import {
-  Group,
-  GroupHeader,
-  SliderButton,
-  Switch,
-} from '@arcanejs/react-toolkit';
+import { FC, useMemo } from 'react';
+import { Api, TypedLight } from './hue-types';
+import { Group, SliderButton, Switch } from '@arcanejs/react-toolkit';
 import * as z from 'zod';
 import { v3 } from 'node-hue-api';
 import { throttle } from 'lodash';
@@ -57,14 +52,13 @@ export const Light: FC<LightProps> = ({
 
   return (
     <Group title={light.name}>
-      <Switch state={light.state.on ? 'on' : 'off'} onChange={updatePower} />
+      <Switch value={light.state.on ? 'on' : 'off'} onChange={updatePower} />
       {light.state.bri !== undefined && (
         <SliderButton
           value={(light.state.bri / 255) * 100}
           min={0}
           max={100}
           onChange={updateBrightnessThrottled}
-          mode="writeThrough"
         />
       )}
     </Group>
