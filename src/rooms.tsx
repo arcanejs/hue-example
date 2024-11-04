@@ -26,7 +26,6 @@ export const Rooms: FC<RoomsProps> = ({ api, handleError }) => {
             if (isEqual(current, processed)) {
               return current;
             }
-            console.log(rooms[0]);
             return processed;
           }),
         ),
@@ -41,7 +40,6 @@ export const Rooms: FC<RoomsProps> = ({ api, handleError }) => {
             if (isEqual(current, processed)) {
               return current;
             }
-            console.log(processed);
             return processed;
           }),
         ),

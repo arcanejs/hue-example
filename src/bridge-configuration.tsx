@@ -53,8 +53,6 @@ export const BridgeConfiguration: FC = () => {
         DEVICE_NAME,
       );
 
-      console.log(`Created user: ${user.username}`);
-
       const authenticatedApi = await v3.api
         .createLocal(bridge.ip)
         .connect(user.username);
