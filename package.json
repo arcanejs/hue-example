@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "tsc --noEmit",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,md}\"",
     "start": "node --import=tsx src"
   },
   "dependencies": {
@@ -12,5 +15,12 @@
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
     "zod": "^3.23.8"
+  },
+  "packageManager": "pnpm@9.9.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }
