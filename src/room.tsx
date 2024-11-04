@@ -1,11 +1,6 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 import { Api, TypedLight, TypedRoom } from './hue-types';
-import {
-  Group,
-  GroupHeader,
-  SliderButton,
-  Switch,
-} from '@arcanejs/react-toolkit';
+import { Group, SliderButton, Switch } from '@arcanejs/react-toolkit';
 import * as z from 'zod';
 import { v3 } from 'node-hue-api';
 import { throttle } from 'lodash';
@@ -51,7 +46,7 @@ export const Room: FC<RoomProps> = ({
     <Group title={room.name} direction="vertical">
       <Group>
         <Switch
-          state={room.state.any_on ? 'on' : 'off'}
+          value={room.state.any_on ? 'on' : 'off'}
           onChange={(value) => {
             const state = new v3.model.lightStates.GroupLightState()[value]();
             api.groups
@@ -66,7 +61,6 @@ export const Room: FC<RoomProps> = ({
             min={0}
             max={100}
             onChange={updateBrightnessThrottled}
-            mode="writeThrough"
           />
         )}
       </Group>
