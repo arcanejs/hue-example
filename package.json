@@ -9,8 +9,13 @@
     "start": "node --import=tsx src"
   },
   "dependencies": {
+    "@arcanejs/react-toolkit": "^0.4.1",
+    "@arcanejs/toolkit": "^0.3.0",
+    "@types/lodash": "^4.17.13",
     "@types/node": "^22.8.7",
     "@types/react": "^18",
+    "lodash": "^4.17.21",
+    "node-hue-api": "5.0.0-beta.16",
     "react": "^18",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
