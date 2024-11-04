@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { discovery, v3 } from 'node-hue-api';
 
 import { Group, Button, Label } from '@arcanejs/react-toolkit';
@@ -19,7 +19,7 @@ type BridgeConfigState =
   | { state: 'connecting'; bridge: Bridge }
   | { state: 'error'; error: string };
 
-export const BridgeConfiguration = () => {
+export const BridgeConfiguration: FC = () => {
   const updateHueData = useDataFileUpdater(HueData);
 
   const [state, setState] = useState<BridgeConfigState>({
@@ -46,19 +46,26 @@ export const BridgeConfiguration = () => {
   const connectToBridge = async (bridge: Bridge) => {
     setState({ state: 'connecting', bridge });
     try {
-
       const unauthenticatedApi = await v3.api.createLocal(bridge.ip).connect();
 
-      const user = await unauthenticatedApi.users.createUser(APP_NAME, DEVICE_NAME);
+      const user = await unauthenticatedApi.users.createUser(
+        APP_NAME,
+        DEVICE_NAME,
+      );
 
       console.log(`Created user: ${user.username}`);
 
-      const authenticatedApi = await v3.api.createLocal(bridge.ip).connect(user.username);
+      const authenticatedApi = await v3.api
+        .createLocal(bridge.ip)
+        .connect(user.username);
 
-      const bridgeConfig = await authenticatedApi.configuration.getConfiguration();
-      console.log(`Connected to Hue Bridge: ${bridgeConfig.name} :: ${bridgeConfig.ipaddress}`);
+      const bridgeConfig =
+        await authenticatedApi.configuration.getConfiguration();
+      console.log(
+        `Connected to Hue Bridge: ${bridgeConfig.name} :: ${bridgeConfig.ipaddress}`,
+      );
 
-      updateHueData(current => {
+      updateHueData((current) => {
         return {
           ...current,
           bridge: {
@@ -67,8 +74,7 @@ export const BridgeConfiguration = () => {
             clientKey: user.clientkey,
           },
         };
-      })
-
+      });
     } catch (error) {
       console.error(error);
       setState({ state: 'error', error: `${error}` });

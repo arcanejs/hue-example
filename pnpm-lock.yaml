@@ -14,12 +14,18 @@ importers:
       '@arcanejs/toolkit':
         specifier: ^0.3.0
         version: 0.3.0
+      '@types/lodash':
+        specifier: ^4.17.13
+        version: 4.17.13
       '@types/node':
         specifier: ^22.8.7
         version: 22.8.7
       '@types/react':
         specifier: ^18
         version: 18.3.12
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       node-hue-api:
         specifier: 5.0.0-beta.16
         version: 5.0.0-beta.16
@@ -206,6 +212,9 @@ packages:
   '@peter-murray/hue-bridge-model@2.1.1':
     resolution: {integrity: sha512-RdnTRY6YOP0TS1z7elRuvD2LsxV+/fwZsl967Ihwvk/SUjQ0247plc6YRM2bEeDBUi06HpcE+tGV4GQBMlVAeg==}
     engines: {node: '>= 10.0.0'}
+
+  '@types/lodash@4.17.13':
+    resolution: {integrity: sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==}
 
   '@types/node@22.8.7':
     resolution: {integrity: sha512-LidcG+2UeYIWcMuMUpBKOnryBWG/rnmOHQR5apjn8myTQcx3rinFRn7DcIFhMnS0PPFSC6OafdIKEad0lj6U0Q==}
@@ -678,6 +687,8 @@ snapshots:
     optional: true
 
   '@peter-murray/hue-bridge-model@2.1.1': {}
+
+  '@types/lodash@4.17.13': {}
 
   '@types/node@22.8.7':
     dependencies:

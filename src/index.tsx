@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
-import { v3 } from 'node-hue-api';
+import React from 'react';
 import path from 'path';
 
-import { Toolkit } from '@arcanejs/toolkit';
-import { ToolkitRenderer, Group, Button, Label } from '@arcanejs/react-toolkit';
-import { useDataFileContext } from '@arcanejs/react-toolkit/data';
+import { Group, Toolkit } from '@arcanejs/toolkit';
+import { ToolkitRenderer } from '@arcanejs/react-toolkit';
+import { useDataFileData } from '@arcanejs/react-toolkit/data';
 import { HueData } from './data';
 import { BridgeConfiguration } from './bridge-configuration';
-
-const { discovery, api: hueApi} = v3;
+import { Dashboard } from './dashboard';
 
 const DATA_FILE = path.join(path.dirname(__dirname), 'data', 'hue.json');
 
@@ -23,17 +21,13 @@ toolkit.start({
 });
 
 const ControlPanel = () => {
-  const { data, updateData } = useDataFileContext(HueData);
+  const data = useDataFileData(HueData);
 
   if (!data.bridge) {
     return <BridgeConfiguration />;
   }
 
-  return (
-    <Group direction='vertical'>
-
-    </Group>
-  );
+  return <Dashboard />;
 };
 
 const App = () => {
@@ -41,8 +35,7 @@ const App = () => {
     <HueData.Provider path={DATA_FILE}>
       <ControlPanel />
     </HueData.Provider>
-  )
-}
+  );
+};
 
-// Start rendering the control panel with @arcanejs/react-toolkit
-ToolkitRenderer.render(<App />, toolkit);
+ToolkitRenderer.render(<App />, toolkit, { direction: 'vertical' });
