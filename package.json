@@ -1,0 +1,16 @@
+{
+  "name": "hue-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node --import=tsx src"
+  },
+  "dependencies": {
+    "@types/node": "^22.8.7",
+    "@types/react": "^18",
+    "react": "^18",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "zod": "^3.23.8"
+  }
+}
