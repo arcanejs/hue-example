@@ -1,13 +1,6 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { Api, ROOM, TypedRoom } from './hue-types';
-import {
-  Group,
-  GroupHeader,
-  SliderButton,
-  Switch,
-} from '@arcanejs/react-toolkit';
-import * as z from 'zod';
-import { v3 } from 'node-hue-api';
+import { Api, LIGHT, ROOM, TypedLight, TypedRoom } from './hue-types';
+import { Group } from '@arcanejs/react-toolkit';
 import { isEqual } from 'lodash';
 import { Room } from './room';
 
@@ -18,31 +11,51 @@ type RoomsProps = {
 
 export const Rooms: FC<RoomsProps> = ({ api, handleError }) => {
   const [rooms, setRooms] = useState<TypedRoom[] | null>(null);
+  const [allLights, setLights] = useState<Record<
+    number,
+    TypedLight | undefined
+  > | null>(null);
 
-  const updateRooms = useMemo(
+  const updateRoomsAndLights = useMemo(
     () => () =>
-      api.groups
-        .getRooms()
-        .then((rooms) =>
+      Promise.all([
+        // Get all rooms
+        api.groups.getRooms().then((rooms) =>
           setRooms((current) => {
-            const processedRooms = rooms.map((r) => ROOM.parse(r));
-            if (isEqual(current, processedRooms)) {
+            const processed = rooms.map((r) => ROOM.parse(r));
+            if (isEqual(current, processed)) {
               return current;
             }
-            return processedRooms;
+            console.log(rooms[0]);
+            return processed;
           }),
-        )
-        .catch(handleError),
+        ),
+        // Get all lights
+        api.lights.getAll().then((lights) =>
+          setLights((current) => {
+            const processed: Record<number, TypedLight> = {};
+            for (const l of lights) {
+              const pl = LIGHT.parse(l);
+              processed[pl.id] = pl;
+            }
+            if (isEqual(current, processed)) {
+              return current;
+            }
+            console.log(processed);
+            return processed;
+          }),
+        ),
+      ]).catch(handleError),
     [api, handleError],
   );
 
   useEffect(() => {
-    const timeout = setInterval(updateRooms, 500);
-    updateRooms();
+    const timeout = setInterval(updateRoomsAndLights, 500);
+    updateRoomsAndLights();
     return () => clearInterval(timeout);
   }, [api]);
 
-  if (!rooms) {
+  if (!rooms || !allLights) {
     return <>Loading...</>;
   }
 
@@ -52,8 +65,9 @@ export const Rooms: FC<RoomsProps> = ({ api, handleError }) => {
         <Room
           key={room.id}
           room={room}
+          allLights={allLights}
           api={api}
-          updateRooms={updateRooms}
+          updateRoomsAndLights={updateRoomsAndLights}
           handleError={handleError}
         />
       ))}

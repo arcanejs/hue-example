@@ -24,6 +24,7 @@ export const ROOM = z.object({
     any_on: z.boolean(),
     all_on: z.boolean(),
   }),
+  lights: z.array(z.string()),
   action: z
     .object({
       on: z.boolean(),
@@ -35,3 +36,18 @@ export const ROOM = z.object({
 });
 
 export type TypedRoom = z.infer<typeof ROOM>;
+
+export const LIGHT = z.object({
+  id: z.number(),
+  name: z.string(),
+  state: z
+    .object({
+      on: z.boolean(),
+      bri: z.number(),
+      hue: z.number(),
+      sat: z.number(),
+    })
+    .partial(),
+});
+
+export type TypedLight = z.infer<typeof LIGHT>;
